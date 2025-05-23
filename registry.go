@@ -77,6 +77,11 @@ func (reg *decoderRegistry) RegisterIfNew(programID PublicKey, decoder Instructi
 	return true
 }
 
+func RegisterInstructionExist(programID PublicKey) bool {
+	_, has := instructionDecoderRegistry.Get(programID)
+	return has
+}
+
 func RegisterInstructionDecoder(programID PublicKey, decoder InstructionDecoder) {
 	prev, has := instructionDecoderRegistry.Get(programID)
 	if has {
